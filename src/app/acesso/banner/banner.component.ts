@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { Images } from './imagem.model';
 
 @Component({
   selector: 'app-banner',
@@ -20,15 +21,34 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 
 export class BannerComponent implements OnInit {
 
-  public estado = 'escondido';
+  public imagens = [
+    { estado: 'visivel', url: '/assets/banner-acesso/img_1.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_2.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_3.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_4.png' },
+    { estado: 'escondido', url: '/assets/banner-acesso/img_5.png' }
+  ];
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    setTimeout(() => this.logicaRotacao(), 3000);
+  }
 
-  toggleEstado() {
-    this.estado = this.estado === 'escondido' ? 'visivel' : 'escondido';
-    console.log(this.estado);
+  logicaRotacao() {
+
+    let idx: number;
+
+    for (let i = 0; i <= 4; i++) {
+      if (this.imagens[i].estado === 'visivel') {
+        this.imagens[i].estado = 'escondido';
+        idx = i === 4 ? 0 : i + 1;
+      }
+    }
+
+    this.imagens[idx].estado = 'visivel';
+
+    setTimeout(() => this.logicaRotacao(), 3000);
   }
 
 }
