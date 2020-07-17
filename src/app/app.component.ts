@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase';
+import 'firebase/'
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,6 @@ import * as firebase from 'firebase';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'instagram-clone-angular';
 
   ngOnInit() {
     // Your web app's Firebase configuration
